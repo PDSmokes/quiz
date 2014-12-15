@@ -1,0 +1,52 @@
+final int sp=1;
+         int i=1; 
+         final ResultSet resultSet = statement.executeQuery("SELECT* FROM spørgsmål INNER JOIN svar ON spørgsmål.sp_id=svar.sp_id where spørgsmål.sp_id="+sp);  
+         
+         
+         if (resultSet.next()) 
+         {  
+             
+         question = new JLabel(resultSet.getString("sp")); 
+         question.setSize(20,20);    
+         question.setBackground(Color.black);
+         panel.add(question);
+         
+         }
+            
+      
+      
+      
+    while (resultSet.next())
+        
+         
+           
+        {
+                          // String sql= "SELECT* FROM spørgsmål INNER JOIN svar ON spørgsmål.sp_id=svar.sp_id where spørgsmål.sp_id="+1;
+              
+       
+         
+            
+            
+            
+            
+        buttons[i] = new JButton(resultSet.getString("svar"));            
+    	  final String valgt2=resultSet.getString("true/false");       
+    	  buttons[i].setSize(20, 20);
+    	  buttons[i].setBackground( new Color(107, 106, 104) );
+    	  buttons[i].setActionCommand(b[i]);
+    	  buttons[i].addActionListener(new ActionListener(){
+    	  
+              
+        public void actionPerformed(ActionEvent e) {
+            String valgt = e.getActionCommand();
+           
+                if (valgt2.equals("1"))   	   
+    	        JOptionPane.showMessageDialog(null, "Du svarede rigtigt!");
+    			glass.setVisible(true); 
+                        info.add(new JLabel());
+                                                      
+                if (valgt2.equals("0"))   	   
+                JOptionPane.showMessageDialog(null, "Du svarede forkert!");
+    			glass.setVisible(true); 
+			info.add(new JLabel());                    
+                }
